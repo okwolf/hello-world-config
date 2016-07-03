@@ -1,13 +1,17 @@
 server {
-    server_name www.example.com;
-    root /var/www/html/php-hello-world;
-
     include https;
+    server_name .ngrok.io;
+    root /var/www/html/php-hello-world;
+    
     include php;
+    include webhook;
 }
 
 server {
     listen 80;
-    server_name www.example.com;
-    return 301 https://$host$request_uri;
+    server_name .ngrok.io;
+    root /var/www/html/php-hello-world;
+
+    include php;
+    include webhook;
 }
